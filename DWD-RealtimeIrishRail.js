@@ -42,7 +42,6 @@ Module.register("DWD-RealtimeIrishRail",{
 	// Override dom generator.
 	getDom: function() {
 		var wrapper = document.createElement("div");
-		var childNodes = document.createElement("div");
 
 		var span = document.createElement("span");
 		span.innerHTML = "&nbsp;";
