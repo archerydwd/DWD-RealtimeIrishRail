@@ -6,13 +6,6 @@ PORT = 5554
 
 class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
 
-    def is_json(myjson):
-        try:
-            json_object = json.loads(myjson)
-        except ValueError, e:
-            return False
-        return True
-
     def do_GET(self):
         all_params = self.path.split("?url=")
         url_param = all_params[1]

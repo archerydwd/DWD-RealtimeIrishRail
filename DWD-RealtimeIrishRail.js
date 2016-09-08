@@ -12,7 +12,7 @@ Module.register("DWD-RealtimeIrishRail",{
 
 	// Default module config.
 	defaults: {
-		updateInterval: 60000, // every 10 seconds
+		updateInterval: 60000, // every 60 seconds
 		initialLoadDelay: 2500, // 2.5 seconds delay
 		retryDelay: 2500, // retry delay
 		animationSpeed: 2500, // animation speed
