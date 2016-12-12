@@ -16,8 +16,8 @@ Module.register("DWD-RealtimeIrishRail",{
 		initialLoadDelay: 2500, // 2.5 seconds delay
 		retryDelay: 2500, // retry delay
 		animationSpeed: 2500, // animation speed
-		httpRequestURL: "http://wwww.localhost:5554/",
-        TrainUrl: "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode=crlow&NumMins=90"
+		httpRequestURL: "http://127.0.0.1:5554/",
+    TrainUrl: "http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode=crlow&NumMins=90"
 	},
 
 	// Define start sequence.

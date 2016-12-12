@@ -16,7 +16,7 @@ This is version 1.0 and therefore not at a stage for widespread use.
     pip install requests
 6. Install beautiful soup 4
     pip install beautifulsoup4
-7. Run the SimpleHTTPServer
+7. Run the SimpleHTTPServer, This does not work on the raspberry pi, so I would say to install it on another system within the LAN that has a constant ip address assigned and then add that to the httpRequestURL in the config.
     python trains.py
 2. Add DWD-RealtimeIrishRail to the modules array in the `config/config.js` (see next step below)
 
@@ -56,6 +56,14 @@ The following properties can be configured:
 				<br><b>Default value:</b> <code>60000</code>
 			</td>
 		</tr>
+				<tr>
+					<td>
+						<code>httpRequestURL</code>
+					</td>
+					<td>
+						http://127.0.0.1:5554/
+					</td>
+				</tr>
         <tr>
 			<td><code>TrainUrl</code></td>
 			<td>The api request url for the specific train station that you want to target. API URLs can be found here: http://api.irishrail.ie/realtime/realtime.asmx<br>
