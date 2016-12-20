@@ -6,19 +6,30 @@ This is version 1.0 and therefore not at a stage for widespread use.
 ## Installation
 1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/archerydwd/DWD-RealtimeIrishRail.git`. A new folder will appear.
 2. Change directory into the new folder: cd DWD-RealtimeIrishRail/
-3. Install python
+3. Install python:
     brew install python
     or
     yum install python
-4. Install pip
+4. Install pip:
     easy_install install pip
 5. Install requests:
     pip install requests
-6. Install beautiful soup 4
+6. Install beautiful soup 4:
     pip install beautifulsoup4
-7. Run the SimpleHTTPServer, This does not work on the raspberry pi, so I would say to install it on another system within the LAN that has a constant ip address assigned and then add that to the httpRequestURL in the config.
-    python trains.py
-2. Add DWD-RealtimeIrishRail to the modules array in the `config/config.js` (see next step below)
+7. Install xmltodict:
+    pip install xmltodict
+8. Run the SimpleHTTPServer on the pi:
+    python trains.py > /dev/null
+    Or you can set up a cron to do this on reboot:
+    sudo crontab -e
+    append a new line at the bottom of this file with the following line of text:
+    @reboot python /path/to/MagicMirror/DWD-RealtimeIrishRail/trains.py > /dev/null
+    then do a reboot: 
+    sudo reboot
+    (to check if the server is running: 
+        ps -ef | grep python
+    this should show all running python processes with the trains.py listed, if not then make sure to execute the prior steps)
+9. Add DWD-RealtimeIrishRail to the modules array in the `config/config.js` (see next step below)
 
 ## Using the module
 
@@ -61,7 +72,7 @@ The following properties can be configured:
 						<code>httpRequestURL</code>
 					</td>
 					<td>
-						http://127.0.0.1:5554/
+						http://127.0.0.1:5554/ (this is the url for the python trains server we just started above)
 					</td>
 				</tr>
         <tr>
