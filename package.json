@@ -4,7 +4,7 @@
   "description": "A MM module to display real time irish rail info",
   "main": "DWD-RealtimeIrishRail.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/DavidLSmyth/DWD-RealtimeIrishRail#readme",
   "dependencies": {
-    "xml-js": "^1.6.11",
+    "jest": "^28.1.0",
     "xml2js": "^0.4.23"
   }
 }

@@ -1,9 +1,7 @@
 
-//const fetch = require("node-fetch");
-const fetch = require('cross-fetch');
-const xml_converter = require("xml-js");
-const xml2js = require("xml2js");
+const xml2js= require("xml2js");
 const request = require("request");
+
 //returns the Irish rail xml data converted to json, copied from python
 const build_trains = function(train){
         t = {}
@@ -18,8 +16,7 @@ const build_trains = function(train){
 
 //given the js data, will process to an array of objects
 const processTrainObjs = function(data){
-        //
-        returnArray = [];
+        //data json will only have objStationData key if some trains are running
         if(data.hasOwnProperty("objStationData")){
                 //read the objStationData
                 data = data["objStationData"];
@@ -67,14 +64,10 @@ const IrishRailFetcher =  function(url){
                         result=processTrainObjs(convertxml(body));
                 }
         });
-        //doesn't work, need to do asyn version
+        //return here doesn't work, need to do async version...
         return result;
 
 }
-
-
-/*
-let res = IrishRailFetcher("http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode=HSTON&NumMins=90", console.log);
 
 let xml_string = `<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfObjStationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://api.irishrail.ie/realtime/">
@@ -126,6 +119,12 @@ let xml_string = `<?xml version="1.0" encoding="utf-8"?>
   </objStationData>
 </ArrayOfObjStationData>
 `
-//console.log(convertxml(xml_string));
+/*
+let res = IrishRailFetcher("http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode=HSTON&NumMins=90", console.log);
 */
-module.exports = IrishRailFetcher; 
+console.log(processTrainObjs(convertxml(xml_string)));
+
+exports.IrishRailFetcher = IrishRailFetcher; 
+exports.build_trains = build_trains;
+exports.processTrainObjs = processTrainObjs;
+exports.convertxml = convertxml;
