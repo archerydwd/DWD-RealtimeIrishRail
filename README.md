@@ -1,5 +1,5 @@
 # DWD-RealtimeIrishRail
-This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It is specifically for Irish rail customers, It accesses the Realtime Irish Rail API via a Python SimpleHTTPServer, which makes the request, then parses the response and returns json formatted data to the module for use in the MagicMirror.
+This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It is specifically for Irish rail customers, It accesses the Realtime Irish Rail API via the node_helper.js module, which makes the request, then parses the response and returns json formatted data to the module for use in the MagicMirror.
 
 This is version 2.0 and may still be prone to some bugs/failure.
 
