@@ -10,7 +10,7 @@ This is version 2.0 and may still be prone to some bugs/failure.
 4. Add DWD-RealtimeIrishRail to the modules array in the `config/config.js` (see next step below)
 
 ## Running tests
-1. Navigate into your MagicMirror's `modules` folder
+1. Navigate into your MagicMirror's `modules/DWD-RealtimeIrishRail` folder
 2. Run npm test
 
 ## Use in MagicMirror
