@@ -12,6 +12,7 @@ const build_trains = function(train){
         t['due_in'] = train['Duein']
         t['scheduled_arrival'] = train['Scharrival']
         t['location'] = train['Lastlocation']
+	t["late"] = train["Late"]
         return t
 }
 

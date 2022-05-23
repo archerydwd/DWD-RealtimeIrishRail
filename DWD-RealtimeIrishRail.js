@@ -82,16 +82,19 @@ Module.register("DWD-RealtimeIrishRail",{
                 var item3 = document.createElement("li");
                 var item4 = document.createElement("li");
                 var item5 = document.createElement("li");
-                item1.innerHTML = "<a>Origin : " + this.nodes[i]['origin']+"</a>";
-                item2.innerHTML = "<a>Destination : " + this.nodes[i]['destination']+"</a>";
-                item3.innerHTML = "<a>Location : " + this.nodes[i]['location']+"</a>";
-                item4.innerHTML = "<a>ETA : " + this.nodes[i]['eta']+"</a>";
-                item5.innerHTML = "<a>Due In : " + this.nodes[i]['due_in']+"</a>";
+	
+                item1.innerHTML = "<a>Origin: " + this.nodes[i]['origin']+"</a>";
+                item2.innerHTML = "<a>Dest: " + this.nodes[i]['destination']+"</a>";
+                item3.innerHTML = "<a>Loc: " + this.nodes[i]['location']+"</a>";
+                item4.innerHTML = "<a>ETA: " + this.nodes[i]['eta']+ "(" + this.nodes[i]["due_in"] + " mins)</a>";
+		item5.innerHTML = "<a>Late: " + this.nodes[i]['late']+"</a>";
+
                 list1.appendChild(item1);
                 list1.appendChild(item2);
                 list1.appendChild(item3);
                 list1.appendChild(item4);
                 list1.appendChild(item5);
+
                 col.appendChild(list1);
                 tt_row.appendChild(col);
             }
