@@ -30,7 +30,7 @@ Module.register("DWD-RealtimeIrishRail",{
 		this.failureFlag = "";
 		this.status = "";
 		this.requestComplete;
-
+		//this.updateRequest();
 		// Schedule update timer.
 		var self = this;
 		setInterval(function() {
@@ -102,29 +102,16 @@ Module.register("DWD-RealtimeIrishRail",{
 updateRequest: function() {
 	var self = this;
 	var retry = true;
+	//send message to the server via a socket to ask for updates
+	this.sendSocketNotification("GET_TRAINS", this.config.TrainUrl);
 
-	var xhttp = new XMLHttpRequest();
-    var completeUrl = this.config.httpRequestURL + "?url=" + this.config.TrainUrl;
-	xhttp.open("GET", completeUrl, true);
-	xhttp.onreadystatechange = function() {
-		if (this.readyState === 4) {
-			if (this.status === 200) {
-				self.requestComplete = true;
-				self.processData(JSON.parse(this.responseText));
-				self.updateDom(self.config.animationSpeed);
-			}
-			else {
-				self.failureFlag = true;
-				self.status = this.status;
-				self.updateDom(self.config.animationSpeed);
-			}
-
-			if (retry) {
-				self.scheduleUpdate((self.loaded) ? -1 : self.config.retryDelay);
-			}
-		}
-	};
-	xhttp.send();
+},
+socketNotificationReceived: function(notification, payload){
+	//payload is the train data
+	if(notification === "TRAIN_DATA"){
+		this.processData(payload);
+		this.scheduleUpdate((self.loaded) ? -1 : self.config.retryDelay);
+	}
 },
 
 processData: function(data) {
@@ -153,5 +140,6 @@ scheduleUpdate: function(delay) {
 			self.updateRequest();
 		}, nextLoad);
 	}
+
 
 });
