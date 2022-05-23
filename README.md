@@ -1,5 +1,5 @@
 # DWD-RealtimeIrishRail
-This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It is specifically for Irish rail customers, It accesses the Realtime Irish Rail API via the node_helper.js module, which makes the request, then parses the response and returns json formatted data to the module for use in the MagicMirror.
+This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It is specifically for Irish rail customers, It accesses the Realtime Irish Rail API via the node_helper.js module, which makes the request, then parses the response and returns json formatted data to the module for use in the MagicMirror. Some ad-hoc test have been written but the module neeeds refactoring to thoroughly test the functionality.
 
 This is version 2.0 and may still be prone to some bugs/failure.
 
@@ -9,8 +9,11 @@ This is version 2.0 and may still be prone to some bugs/failure.
 3. Run npm install
 4. Add DWD-RealtimeIrishRail to the modules array in the `config/config.js` (see next step below)
 
-## Using the module
+## Running tests
+1. Navigate into your MagicMirror's `modules` folder
+2. Run npm test
 
+## Use in MagicMirror
 To use this module, add it to the modules array in the `config/config.js` file:
 ````javascript
 modules: [
