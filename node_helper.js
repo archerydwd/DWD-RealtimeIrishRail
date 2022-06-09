@@ -86,17 +86,17 @@ module.exports = NodeHelper.create({
         request({url: url, method: "GET"},function(error, response, body){
                 if(!error && response.statusCode == 200){
                         result=processTrainObjs(convertxml(body));
-                        console.log("in getTrains");
+//                        console.log("in getTrains");
                         self.sendSocketNotification("TRAIN_DATA", result);
                 }
         });
     },
 
     socketNotificationReceived: function(notification, payload) {
-	console.log("socket notification received in node_helper");
+//	console.log("socket notification received in node_helper");
         if (notification === 'GET_TRAINS') {
-            console.log("calling getTrains in node helper");
-	   console.log(payload);
+//          console.log("calling getTrains in node helper");
+//	   console.log(payload);
 	    this.getTrains(payload);
         }
     }

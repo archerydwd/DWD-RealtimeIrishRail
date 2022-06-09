@@ -66,9 +66,9 @@ Module.register("DWD-RealtimeIrishRail",{
 		}
 		else {
 			//Add and display attributes
-            var head = document.createElement("header");
-            head.innerHTML = "Trains";
-            wrapper.appendChild(head);
+//            var head = document.createElement("header");
+//            head.innerHTML = "Trains";
+//            wrapper.appendChild(head);
             var train_table = document.createElement("table");
             wrapper.appendChild(train_table);
             var tt_row = document.createElement("tr");

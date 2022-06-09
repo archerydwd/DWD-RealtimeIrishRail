@@ -69,6 +69,7 @@ const IrishRailFetcher =  function(url){
 
 }
 
+/*
 let xml_string = `<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfObjStationData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://api.irishrail.ie/realtime/">
   <objStationData>
@@ -119,11 +120,11 @@ let xml_string = `<?xml version="1.0" encoding="utf-8"?>
   </objStationData>
 </ArrayOfObjStationData>
 `
-/*
-let res = IrishRailFetcher("http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode=HSTON&NumMins=90", console.log);
-*/
-console.log(processTrainObjs(convertxml(xml_string)));
 
+let res = IrishRailFetcher("http://api.irishrail.ie/realtime/realtime.asmx/getStationDataByCodeXML_WithNumMins?StationCode=HSTON&NumMins=90", console.log);
+
+console.log(processTrainObjs(convertxml(xml_string)));
+*/
 exports.IrishRailFetcher = IrishRailFetcher; 
 exports.build_trains = build_trains;
 exports.processTrainObjs = processTrainObjs;
