@@ -30,7 +30,7 @@ Module.register("DWD-RealtimeIrishRail",{
 		this.failureFlag = "";
 		this.status = "";
 		this.requestComplete;
-
+		//this.updateRequest();
 		// Schedule update timer.
 		var self = this;
 		setInterval(function() {
@@ -66,9 +66,9 @@ Module.register("DWD-RealtimeIrishRail",{
 		}
 		else {
 			//Add and display attributes
-            var head = document.createElement("header");
-            head.innerHTML = "Trains";
-            wrapper.appendChild(head);
+//            var head = document.createElement("header");
+//            head.innerHTML = "Trains";
+//            wrapper.appendChild(head);
             var train_table = document.createElement("table");
             wrapper.appendChild(train_table);
             var tt_row = document.createElement("tr");
@@ -82,16 +82,19 @@ Module.register("DWD-RealtimeIrishRail",{
                 var item3 = document.createElement("li");
                 var item4 = document.createElement("li");
                 var item5 = document.createElement("li");
-                item1.innerHTML = "<a>Origin : " + this.nodes[i]['origin']+"</a>";
-                item2.innerHTML = "<a>Destination : " + this.nodes[i]['destination']+"</a>";
-                item3.innerHTML = "<a>Location : " + this.nodes[i]['location']+"</a>";
-                item4.innerHTML = "<a>ETA : " + this.nodes[i]['eta']+"</a>";
-                item5.innerHTML = "<a>Due In : " + this.nodes[i]['due_in']+"</a>";
+	
+                item1.innerHTML = "<a>Origin: " + this.nodes[i]['origin']+"</a>";
+                item2.innerHTML = "<a>Dest: " + this.nodes[i]['destination']+"</a>";
+                item3.innerHTML = "<a>Loc: " + this.nodes[i]['location']+"</a>";
+                item4.innerHTML = "<a>ETA: " + this.nodes[i]['eta']+ "(" + this.nodes[i]["due_in"] + " mins)</a>";
+		item5.innerHTML = "<a>Late: " + this.nodes[i]['late']+"</a>";
+
                 list1.appendChild(item1);
                 list1.appendChild(item2);
                 list1.appendChild(item3);
                 list1.appendChild(item4);
                 list1.appendChild(item5);
+
                 col.appendChild(list1);
                 tt_row.appendChild(col);
             }
@@ -102,29 +105,16 @@ Module.register("DWD-RealtimeIrishRail",{
 updateRequest: function() {
 	var self = this;
 	var retry = true;
+	//send message to the server via a socket to ask for updates
+	this.sendSocketNotification("GET_TRAINS", this.config.TrainUrl);
 
-	var xhttp = new XMLHttpRequest();
-    var completeUrl = this.config.httpRequestURL + "?url=" + this.config.TrainUrl;
-	xhttp.open("GET", completeUrl, true);
-	xhttp.onreadystatechange = function() {
-		if (this.readyState === 4) {
-			if (this.status === 200) {
-				self.requestComplete = true;
-				self.processData(JSON.parse(this.responseText));
-				self.updateDom(self.config.animationSpeed);
-			}
-			else {
-				self.failureFlag = true;
-				self.status = this.status;
-				self.updateDom(self.config.animationSpeed);
-			}
-
-			if (retry) {
-				self.scheduleUpdate((self.loaded) ? -1 : self.config.retryDelay);
-			}
-		}
-	};
-	xhttp.send();
+},
+socketNotificationReceived: function(notification, payload){
+	//payload is the train data
+	if(notification === "TRAIN_DATA"){
+		this.processData(payload);
+		this.scheduleUpdate((self.loaded) ? -1 : self.config.retryDelay);
+	}
 },
 
 processData: function(data) {
@@ -153,5 +143,6 @@ scheduleUpdate: function(delay) {
 			self.updateRequest();
 		}, nextLoad);
 	}
+
 
 });

@@ -1,38 +1,19 @@
 # DWD-RealtimeIrishRail
-This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It is specifically for Irish rail customers, It accesses the Realtime Irish Rail API via a Python SimpleHTTPServer, which makes the request, then parses the response and returns json formatted data to the module for use in the MagicMirror.
+This an extension for the [MagicMirror](https://github.com/MichMich/MagicMirror). It is specifically for Irish rail customers, It accesses the Realtime Irish Rail API via the node_helper.js module, which makes the request, then parses the response and returns json formatted data to the module for use in the MagicMirror. Some ad-hoc test have been written but the module neeeds refactoring to thoroughly test the functionality.
 
-This is version 1.0 and therefore not at a stage for widespread use.
+This is version 2.0 and may still be prone to some bugs/failure.
 
 ## Installation
 1. Navigate into your MagicMirror's `modules` folder and execute `git clone https://github.com/archerydwd/DWD-RealtimeIrishRail.git`. A new folder will appear.
 2. Change directory into the new folder: cd DWD-RealtimeIrishRail/
-3. Install python:
-    brew install python
-    or
-    yum install python
-4. Install pip:
-    easy_install install pip
-5. Install requests:
-    pip install requests
-6. Install beautiful soup 4:
-    pip install beautifulsoup4
-7. Install xmltodict:
-    pip install xmltodict
-8. Run the SimpleHTTPServer on the pi:
-    python trains.py > /dev/null
-    Or you can set up a cron to do this on reboot:
-    sudo crontab -e
-    append a new line at the bottom of this file with the following line of text:
-    @reboot python /path/to/MagicMirror/DWD-RealtimeIrishRail/trains.py > /dev/null
-    then do a reboot: 
-    sudo reboot
-    (to check if the server is running: 
-        ps -ef | grep python
-    this should show all running python processes with the trains.py listed, if not then make sure to execute the prior steps)
-9. Add DWD-RealtimeIrishRail to the modules array in the `config/config.js` (see next step below)
+3. Run npm install
+4. Add DWD-RealtimeIrishRail to the modules array in the `config/config.js` (see next step below)
 
-## Using the module
+## Running tests
+1. Navigate into your MagicMirror's `modules/DWD-RealtimeIrishRail` folder
+2. Run npm test
 
+## Use in MagicMirror
 To use this module, add it to the modules array in the `config/config.js` file:
 ````javascript
 modules: [
@@ -202,9 +183,6 @@ The following properties can be configured:
 	</tbody>
 </table>
 
-## Dependencies
-- Python 2.7
-- SimpleHTTPServer named trains.py
 
 The MIT License (MIT)
 =====================
